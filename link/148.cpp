@@ -61,13 +61,64 @@ class Solution {
         // 合并有序链表
         return Sort_MergeLink(low, midNext);
     }
+
+    /**
+     * 归并迭代 空间 O(1)
+     */
+    ListNode *sortListIteration(ListNode *list) {
+        // 长度
+        int len = 0;
+        ListNode *p = list;
+        while (p) {
+            p = p->next;
+            len++;
+        }
+        auto *dummy = new ListNode;
+        dummy->next = list;
+        for (int size = 1; size < len; size *= 2) {
+            ListNode *current = dummy->next;
+            ListNode *prev = dummy;
+            while (current) {
+                ListNode *leftHead = current;
+
+                // 从左开始的 size 个分割
+                ListNode *rightHead = Sort_subLinkList(leftHead, size);
+                // 从右开始的 size 个分割
+                // current 后移
+                current = Sort_subLinkList(rightHead, size);
+                // 合并后的与之前相连
+                ListNode *merged = Sort_MergeLink(leftHead, rightHead);
+                prev->next = merged;
+
+                // prev 指针后移到合并之后的末尾，开始下次循环
+                while (prev->next) {
+                    prev = prev->next;
+                }
+            }
+        }
+        return dummy->next;
+    }
+
+    /**
+     * 从头开始的第 size 个后断开链表，并返回剩下的
+     */
+    ListNode *Sort_subLinkList(ListNode *list, int size) {
+        if (list == nullptr) return list;
+        for (int i = 1; i < size && list->next; ++i) {
+            list = list->next;
+        }
+        ListNode *remain = list->next;
+        list->next = nullptr;
+        return remain;
+    }
 };
 
 int main() {
     Solution *s = new Solution;
     int a[] = {4, 2, 3, 5, 1};
-    ListNode head(a, 0);
+    ListNode head(a, 5);
     head.print();
 
-    s->sortList(&head)->print();
+    // s->sortList(&head)->print();
+    s->sortListIteration(&head)->print();
 }
