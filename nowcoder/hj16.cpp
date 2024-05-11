@@ -131,24 +131,27 @@ int maxValue(int totalMoney, const vector<Goods> &list) {
             }
 
             // 有限个附件，枚举
-            int nobuy = dp[i][j];
-            int buy = 0;
             // 买主件 + 第一个附件
             if (j >= price + attachPrice1) {
-                buy =
+                int nobuy = dp[i][j];
+                int buy =
                     dp[i - 1][j - price - attachPrice1] + value + attachValue1;
+                dp[i][j] = max(nobuy, buy);
             }
             // 买主件 + 第二个附件
             if (j >= price + attachPrice2) {
-                buy =
+                int nobuy = dp[i][j];
+                int buy =
                     dp[i - 1][j - price - attachPrice2] + value + attachValue2;
+                dp[i][j] = max(nobuy, buy);
             }
             // 买主件 + 第一个 + 第二个附件
             if (j >= price + attachPrice3) {
-                buy =
+                int nobuy = dp[i][j];
+                int buy =
                     dp[i - 1][j - price - attachPrice3] + value + attachValue3;
+                dp[i][j] = max(nobuy, buy);
             }
-            dp[i][j] = max(nobuy, buy);
         }
     }
     for (int i = 0; i < m + 1; i++) {
@@ -205,21 +208,24 @@ int maxValue2(int totalMoney, const vector<Goods> &list) {
             }
 
             // 有限个附件，枚举
-            int nobuy = dp[j];
-            int buy = 0;
             // 买主件 + 第一个附件
             if (j >= price + attachPrice1) {
-                buy = dp[j - price - attachPrice1] + value + attachValue1;
+                int nobuy = dp[j];
+                int buy = dp[j - price - attachPrice1] + value + attachValue1;
+                dp[j] = max(nobuy, buy);
             }
             // 买主件 + 第二个附件
             if (j >= price + attachPrice2) {
-                buy = dp[j - price - attachPrice2] + value + attachValue2;
+                int nobuy = dp[j];
+                int buy = dp[j - price - attachPrice2] + value + attachValue2;
+                dp[j] = max(nobuy, buy);
             }
             // 买主件 + 第一个 + 第二个附件
             if (j >= price + attachPrice3) {
-                buy = dp[j - price - attachPrice3] + value + attachValue3;
+                int nobuy = dp[j];
+                int buy = dp[j - price - attachPrice3] + value + attachValue3;
+                dp[j] = max(nobuy, buy);
             }
-            dp[j] = max(nobuy, buy);
         }
     }
 
@@ -301,5 +307,5 @@ int main() {
         cout << endl;
     }
 
-    cout << maxValue2(totalMoney, list) * factor;
+    cout << maxValue2(totalMoney, list) * factor << endl;
 }
