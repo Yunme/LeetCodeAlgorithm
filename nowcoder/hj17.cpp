@@ -32,16 +32,15 @@ using namespace std;
  */
 vector<string> splitString(string s, char delimiter) {
     vector<string> result;
-    int sublen = 0;
+    int start = 0;
     for (int i = 0; i < s.length(); i++) {
         char a = s[i];
-        if (a != ';') {
-            sublen++;
-            continue;
+        if (a == delimiter) {
+            result.push_back(s.substr(start, i - start));
+            start = i + 1;
         }
-        result.push_back(s.substr(i - sublen, sublen));
-        sublen = 0;
     }
+    result.push_back(s.substr(start, s.length() - start));
     return result;
 }
 
@@ -93,7 +92,7 @@ pair<int, int> moveCoordinate(string commands) {
 }
 
 int main() {
-    string commands = "A10;S20;W10;D30;X;A1A;B10A11;;A10;";
+    string commands = "A10;S20;W10;D30;X;A1A;B10A11;;A10";
     // cin >> commands;
     pair<int, int> position = moveCoordinate(commands);
     cout << position.first << "," << position.second << endl;
