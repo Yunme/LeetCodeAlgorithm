@@ -30,6 +30,35 @@ using namespace std;
  */
 
 /**
+ * 简洁版 NB
+ * 因为元素范围固定是26个字母，且大小写不区分。O(n)
+ */
+void sortString2(string &str) {
+    // 存储排序好的字母
+    vector<char> sorted;
+    // 从a-z遍历寻找26个字母
+    for (int i = 0; i < 26; i++) {
+        for (char c : str) {
+            // 是当前要找的 不分大小写
+            if (i == c - 'A' || i == c - 'a') {
+                sorted.push_back(c);
+            }
+        }
+    }
+    // 把排序好的覆盖到源字符串中
+    // 因为特殊字符位置不变，所以原来是字母的位置还是字母
+    int j = 0;
+    for (int i = 0; i < str.length(); i++) {
+        // 是字母的地方替换为排序后的字母，其他不变
+        if (isalpha(str[i])) {
+            str[i] = sorted[j];
+            j++;
+        }
+    }
+}
+
+/**
+ * 传统版本
  * 字符串排序
  * 快排 不稳定
  * 归并 稳定
@@ -147,8 +176,11 @@ string sortString(string str) {
 int main() {
     string s = "A Famous Saying: Much Ado About Nothing (2012/8).";
     // string s = "A$Fam$(2012/8).";
-    getline(cin, s);
+    // getline(cin, s);
     cout << s << endl;
-    cout << sortString(s) << endl;
+    // cout << sortString2(s) << endl;
+
+    sortString2(s);
+    cout << s << endl;
     return 0;
 }
