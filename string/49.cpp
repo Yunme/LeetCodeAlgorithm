@@ -19,7 +19,7 @@
 using namespace std;
 
 /**
- * 3: 字母异位词分组
+ * 49: 字母异位词分组
  * 给你一个字符串数组，请你将 字母异位词组合在一起。可以按任意顺序返回结果列表。
  * 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。
  * https://leetcode.cn/problems/group-anagrams/description/
