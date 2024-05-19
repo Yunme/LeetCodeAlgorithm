@@ -30,6 +30,9 @@ using namespace std;
  *
  * https://blog.csdn.net/weixin_48157259/article/details/138011098
  *
+ * 类似于 leetCode 946
+ * https://leetcode.cn/problems/validate-stack-sequences/description/
+ * 
  * 输入:
  * 第一行：老师依次放入篮球的编号
  * 第二行：检查是否能够按照放入顺序取出篮球的编号
