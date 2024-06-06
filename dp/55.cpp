@@ -29,7 +29,6 @@ class Solution {
    public:
     /**
      * 法1：动态规划 自己实现
-     * 会超时
      */
     bool canJump(vector<int>& nums) {
         int n = nums.size();
@@ -38,7 +37,6 @@ class Solution {
         vector<int> dp(n, INT_MAX);
         dp[0] = 0;
         for (int i = 0; i < n; i++) {
-            int maxIndex = i + nums[i];
             // 当前步数，接下来几个设置成当前 index
             for (int j = 1; j <= nums[i] && i + j < n; j++) {
                 dp[i + j] = min(i, dp[i + j]);  // 取最小值
