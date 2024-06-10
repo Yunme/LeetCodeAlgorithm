@@ -30,20 +30,28 @@ using namespace std;
 class Solution {
    public:
     /**
-     * 暴力法：
+     * 法1：暴力法：O(n^2)
+     * 双重循环计算每个组合的结水量
+     * 找出最大值
      */
     int maxArea(vector<int>& height) {
         int count = height.size();
         int maxWater = 0;
+        // 左边界 0 ~ n-1 最多是倒数第二个
         for (int i = 0; i < count - 1; i++) {
+            // 右边界 从 i+1 ~ n 最后一个
             for (int j = i + 1; j < count; j++) {
+                // 每个左右边界组成的容器装水量
+                // 宽：j-i 高：高度较矮的边
                 int water = (j - i) * min(height[i], height[j]);
+                // 更新最大值
                 maxWater = max(maxWater, water);
             }
         }
         return maxWater;
     }
     /**
+     * 法2：贪心 O(n)
      * 双指针
      * i：指向左侧
      * j：指向右侧
