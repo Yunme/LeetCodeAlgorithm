@@ -33,23 +33,26 @@ class Solution {
    public:
     /**
      * 法1：O(n) O(n)
+     * 以当前元素的大为主，从左右两边 +1
      * 左规则：a, b： 当 b 的评分大于 a 时，分给 b 比 a 的多
      * 右规则：a, b：当 a 的评分大于 b 时，分给 a 比 b 的多
      */
     int candy(vector<int>& ratings) {
         int n = ratings.size();
         vector<int> left(n, 1);
-        // 左规则 左边的大
+        // 左规则 左边的小于当前的
         for (int i = 1; i < n; i++) {
             if (ratings[i] > ratings[i - 1]) {
+                // 当前的等于左边的 + 1；
                 left[i] = left[i - 1] + 1;
             }
         }
-        // 右规则 右边的小
+        // 右规则 右边的小于当前的
         int total = 0;
         vector<int> right(n, 1);
         for (int i = n - 1; i >= 0; i--) {
             if (i < n - 1 && ratings[i] > ratings[i + 1]) {
+                // 当前的等于右边的 + 1
                 right[i] = right[i + 1] + 1;
             }
             // 结果为 左右中的 大者
