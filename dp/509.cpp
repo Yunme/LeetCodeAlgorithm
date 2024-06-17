@@ -31,10 +31,11 @@ using namespace std;
 class Solution {
    public:
     /**
-     * 法1：递归实现
+     * 法1：递归实现 O(2^n)
      * 直接根据定义写
      */
     int fib(int n) {
+        cout << n << " ";
         if (n == 0) return 0;
         if (n == 1) return 1;
         return fib(n - 1) + fib(n - 2);
@@ -80,9 +81,9 @@ class Solution {
 
 int main() {
     Solution* s = new Solution();
-    vector<int> list = {2, 3, 4, 12};
+    vector<int> list = {2, 3, 4, 12, 100};
     for (auto i : list) {
-        int ans = s->fib3(i);
+        int ans = s->fib(i);
         cout << ans << endl;
     }
 }
