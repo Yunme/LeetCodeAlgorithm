@@ -46,7 +46,8 @@ class Solution {
         queue.push(root);
         int ans = 0;
         while (!queue.empty()) {
-            int size = queue.size();
+            int size = queue.size();  // 当前层的个数
+            // 把当前层都拓展完
             while (size > 0) {
                 TreeNode* node = queue.front();
                 queue.pop();
@@ -54,6 +55,7 @@ class Solution {
                 if (node->right) queue.push(node->right);
                 size--;
             }
+            // 拓展完一层 层数 +1
             ans++;
         }
         return ans;
