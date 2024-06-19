@@ -18,6 +18,7 @@ using namespace std;
 struct ListNode {
     int val;
     ListNode *next;
+    ListNode *random = nullptr;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
@@ -49,7 +50,11 @@ struct ListNode {
     }
     void print() {
         for (ListNode *p = this; p; p = p->next) {
-            cout << p->val << " ";
+            cout << p->val;
+            if (p->random) {
+                cout << "(" << p->random->val << ")";
+            }
+            cout << " ";
         }
         cout << endl;
     }
