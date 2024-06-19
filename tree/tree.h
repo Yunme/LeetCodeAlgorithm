@@ -44,4 +44,26 @@ struct TreeNode {
             }
         }
     }
+    /**
+     * 层序打印
+     */
+    void print() {
+        queue<TreeNode *> queue;
+        queue.push(this);
+        while (!queue.empty()) {
+            int size = queue.size();
+            cout << "[";
+            for (int i = 0; i < size; i++) {
+                auto front = queue.front();
+                queue.pop();
+                if (front->left) queue.push(front->left);
+                if (front->right) queue.push(front->right);
+                cout << front->val;
+                if (i != size - 1) {
+                    cout << " ";
+                }
+            }
+            cout << "] ";
+        }
+    }
 };
