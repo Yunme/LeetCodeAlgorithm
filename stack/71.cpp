@@ -73,39 +73,6 @@ class Solution {
                 stack.push(segment);
             }
         }
-
-        // int i = 0;
-        // while (i < n) {
-        //     int start = i;
-        //     while (i < n && path[i] != '/') {
-        //         i++;
-        //     }
-        //     if (i == start) {
-        //         i++;
-        //         continue;
-        //     }
-
-        //     string segment = path.substr(start, i - start);
-        //     cout << "seg:" << segment << endl;
-        //     if (!stack.empty()) {
-        //         if (segment == ".") {
-        //             continue;
-        //         }
-        //         if (segment == "..") {
-        //             stack.pop();
-        //             continue;
-        //         }
-        //         if (!segment.empty()) {
-        //             stack.push(segment);
-        //         }
-
-        //     } else if (segment != "." && segment != "..") {
-        //         if (!segment.empty()) {
-        //             stack.push(segment);
-        //         }
-        //     }
-        //     i++;
-        // }
         string ans;
         // 栈里 由后向前存储了各级目录
         // 拼接
