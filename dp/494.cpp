@@ -48,6 +48,7 @@ class Solution {
         if ((sum + target) % 2 != 0) return 0;
 
         int ansTarget = (sum + target) / 2;
+        if (ansTarget < 0) return 0;  // 正数之和不能为负
 
         // [0,i] 选若干个和等于 j 的方案数
         vector<int> dp(ansTarget + 1);
