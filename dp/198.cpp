@@ -58,7 +58,7 @@ class Solution {
 
     /**
      * 法2：动态规划 O(n) O(n)
-     * dp[i] 表示前 i 间房能偷盗到的最大金额
+     * dp[i] 表示 [0,i] 间房能偷盗到的最大金额
      * 包含 i
      */
     int rob2(vector<int>& nums) {
@@ -67,10 +67,12 @@ class Solution {
         if (n == 1) return nums[0];
 
         // 表示前 i 间房能偷盗到最大金额
-        vector<int> dp(n + 1);
+        vector<int> dp(n);
         dp[0] = nums[0];
         dp[1] = max(nums[0], nums[1]);
         for (int i = 2; i < n; i++) {
+            // 偷第 i 家：dp[i - 2] + nums[i] ，i-1家不能偷了
+            // 不偷第 i 家：保持 dp[i-1]
             dp[i] = max(dp[i - 2] + nums[i], dp[i - 1]);
         }
         return dp[n - 1];
@@ -103,7 +105,7 @@ int main() {
                                 {1, 2, 3, 4}, {0},
                                 {2, 1, 1, 2}, {1, 3, 1, 3, 100}};
     for (auto i : list) {
-        int count = s->rob3(i);
+        int count = s->rob2(i);
         cout << count << endl << endl;
     }
 }
