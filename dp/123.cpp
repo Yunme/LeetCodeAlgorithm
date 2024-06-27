@@ -38,7 +38,7 @@ class Solution {
         // 不持有，持有1笔，持有一笔后卖出完成交易，在完成一次交易后买入第二笔；完成两笔交易
         // 第一次持有1笔，第一次不持有，第二次持有；第二次不持有
         // dp[i][j] 第 i 天交易结束后对应上面状态的最大利润
-        vector<vector<int>> dp(n, vector<int>(5));
+        vector<vector<int>> dp(n, vector<int>(4));
         dp[0][0] = -prices[0];  // 买入一笔
         dp[0][1] = 0;           // 当天买入卖出 收益 0
         dp[0][2] = -prices[0];  // 当天买入卖出，再买入
@@ -52,6 +52,13 @@ class Solution {
             dp[i][2] = max(dp[i - 1][2], dp[i - 1][1] - prices[i]);
             // 第 i 天完成第二笔交易
             dp[i][3] = max(dp[i - 1][3], dp[i - 1][2] + prices[i]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 4; j++) {
+                cout << dp[i][j] << " ";
+            }
+            cout << endl;
         }
         return dp[n - 1][3];
     }
@@ -88,7 +95,7 @@ int main() {
     vector<vector<int>> list = {
         {3, 3, 5, 0, 0, 3, 1, 4}, {1, 2, 3, 4, 5}, {7, 6, 4, 3, 1}, {1}};
     for (auto i : list) {
-        int ans = s->maxProfit2(i);
+        int ans = s->maxProfit(i);
         cout << ans << endl;
     }
 }
