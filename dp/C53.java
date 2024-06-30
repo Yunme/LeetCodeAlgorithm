@@ -6,7 +6,7 @@
  * 
  * 子数组是数组中的一个连续部分。
  *
- * https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/
+ * https://leetcode.cn/problems/maximum-subarray/description/
  */
 public class C53 {
 
@@ -24,7 +24,8 @@ public class C53 {
         int ans = nums[0];
         for (int i = 1; i < n; i++) {
             // 状态转移：取大者
-            dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+            // dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+            dp[i] = nums[i] > dp[i - 1] + nums[i] ? nums[i] : nums[i] + dp[i - 1];
             ans = Math.max(ans, dp[i]);
         }
         return ans;
@@ -47,10 +48,10 @@ public class C53 {
     }
 
     public static void main(String[] args) {
-        int[][] array1 = {{-2, 1, -3, 4, -1, 2, 1, -5, 4}, {1}, {5, 4, -1, 7, 8}};
-        int[][] array2 = {{1}};
+        int[][] array1 = { { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, { 1 }, { 5, 4, -1, 7, 8 } };
+        int[][] array2 = { { 1 } };
         for (int i = 0; i < array1.length; i++) {
-            Object ans = maxSubArray2(array1[i]);
+            Object ans = maxSubArray(array1[i]);
             System.out.println(ans);
         }
     }
