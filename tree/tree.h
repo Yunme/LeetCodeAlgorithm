@@ -21,6 +21,7 @@ struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
+    TreeNode *next = nullptr;
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right)
@@ -64,6 +65,27 @@ struct TreeNode {
                 }
             }
             cout << "] ";
+        }
+    }
+
+    /**
+     * 根据 next 域输出
+     * 只需要找到最左边的
+     */
+    void printNext() {
+        TreeNode *leftMost = this;
+        while (leftMost) {
+            TreeNode *node = leftMost;
+            cout << "[";
+            // 每一层从左向右
+            while (node) {
+                cout << node->val;
+                node = node->next;
+                if (node) cout << " ";
+            }
+            cout << "] ";
+            // 下一层
+            leftMost = leftMost->left;
         }
     }
 };
