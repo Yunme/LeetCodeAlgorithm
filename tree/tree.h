@@ -73,19 +73,27 @@ struct TreeNode {
      * 只需要找到最左边的
      */
     void printNext() {
-        TreeNode *leftMost = this;
-        while (leftMost) {
-            TreeNode *node = leftMost;
+        TreeNode *current = this;
+        while (current) {
+            // 当前层
+            TreeNode *node = current;
             cout << "[";
-            // 每一层从左向右
             while (node) {
                 cout << node->val;
                 node = node->next;
                 if (node) cout << " ";
             }
-            cout << "] ";
-            // 下一层
-            leftMost = leftMost->left;
+            cout << "]";
+            if (current->left) {
+                current = current->left;
+            } else if (current->right) {
+                current = current->right;
+            } else if (current->next) {
+                current = current->next->left ? current->next->left
+                                              : current->next->right;
+            } else {
+                current = nullptr;
+            }
         }
     }
 };
