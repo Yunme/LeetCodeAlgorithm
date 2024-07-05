@@ -36,12 +36,14 @@ struct TreeNode {
             temp[i] = array[i] != null ? new TreeNode(array[i]) : nullptr;
         }
 
-        for (int i = 0; 2 * i + 2 < count; i++) {
-            if (temp[2 * i + 1]) {
-                temp[i]->left = temp[2 * i + 1];
+        for (int i = 0; 2 * i + 1 < count; i++) {
+            int left = 2 * i + 1;
+            if (temp[left]) {
+                temp[i]->left = temp[left];
             }
-            if (temp[2 * i + 2]) {
-                temp[i]->right = temp[2 * i + 2];
+            int right = left + 1;
+            if (right < count && temp[right]) {
+                temp[i]->right = temp[right];
             }
         }
     }
