@@ -38,11 +38,11 @@ struct TreeNode {
 
         for (int i = 0; 2 * i + 1 < count; i++) {
             int left = 2 * i + 1;
-            if (temp[left]) {
+            if (temp[left] && temp[i]) {
                 temp[i]->left = temp[left];
             }
             int right = left + 1;
-            if (right < count && temp[right]) {
+            if (right < count && temp[right] && temp[i]) {
                 temp[i]->right = temp[right];
             }
         }
