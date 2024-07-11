@@ -58,6 +58,33 @@ class Solution {
     }
 
     /**
+     * 更清晰的递归方法
+     * 满二叉树 左孩子深度 = 右孩子深度
+     */
+    int countNode4(TreeNode* root) {
+        if (root == nullptr) return 0;
+        TreeNode* left = root->left;
+        TreeNode* right = root->right;
+        int leftDepth = 1, rightDepth = 1;  // 初始计算上 root 这层的个数
+        while (left) {
+            left = left->left;
+            leftDepth++;
+        }
+        while (right) {
+            right = right->right;
+            rightDepth++;
+        }
+        // 如果相等, 满二叉树
+        // 以 root 为根结点的二叉树是 满二叉树 个数 = 2^depth - 1
+        if (leftDepth == rightDepth) {
+            return (1 << leftDepth) - 1;
+        }
+        // 如果不相等 递归计算直到 满二叉树为止
+        // 加上当前 root 这一个
+        return countNode4(root->left) + countNode4(root->right) + 1;
+    }
+
+    /**
      * 法2：递归 O(logN * logN)
      * 根据完全二叉树的性质：除最后一层外，其余层全部占满，最后一层左侧靠拢
      *
