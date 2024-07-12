@@ -77,7 +77,7 @@ int main() {
                                {1, null, 2},
                                {2, null, 3, null, 4, null, 5, null, 6}};
     for (auto& i : arr) {
-        int ans = s->minDepth2(new TreeNode(i));
+        int ans = s->isBalanced2(new TreeNode(i));
         cout << ans << endl;
     }
 }
