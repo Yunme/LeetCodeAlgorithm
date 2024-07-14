@@ -58,16 +58,20 @@ class Solution {
 
     /**
      * 法2：DFS 递归法
+     * 中序遍历
      */
     void dfs(TreeNode* root, TreeNode* pre, int& ans) {
         if (root == nullptr) return;
+        // 左
         dfs(root->left, pre, ans);
+        // 当前结点 root 和中序遍历前一个结点的差值
         if (pre == nullptr) {
             pre = root;
         } else {
             ans = min(ans, abs(root->val - pre->val));
             pre = root;
         }
+        // 右
         dfs(root->right, pre, ans);
     }
 
@@ -75,7 +79,7 @@ class Solution {
         if (root == nullptr) return 0;
         int ans = INT_MAX;
         dfs(root, nullptr, ans);
-        return ans;        
+        return ans;
     }
 };
 
