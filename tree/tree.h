@@ -68,6 +68,7 @@ struct TreeNode {
             }
             cout << "] ";
         }
+        cout << endl;
     }
 
     /**
