@@ -74,7 +74,7 @@ class Solution {
         // 剩余可选的：n - index + 1
         // 剩余可选的 小于 还需要选择的 直接return
         if (n - index + 1 < remain) return;
-        // 或 i <= n - (k - size) + 1
+        // 或 i <= n - (k - temp.size()) + 1
         for (int i = index; i <= n; i++) {
             // 当前值放入
             temp.push_back(i);
