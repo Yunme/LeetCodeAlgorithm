@@ -58,7 +58,9 @@ class Solution {
             }
             return;
         }
-        for (int i = index; i <= s.length(); i++) {
+        // 剪枝 子串长度小于等于 3.
+        // 当前层最多循环 3 次
+        for (int i = index; i < s.length() && i <= index + 3; i++) {
             if (!checkNum(s, index, i)) {
                 continue;
             }
