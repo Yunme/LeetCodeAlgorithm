@@ -47,11 +47,32 @@ public class C53 {
         return ans;
     }
 
+    /**
+     * 贪心思想
+     * 当当前子数组之和为负数时，以下一个重新开始计算和
+     */
+    public static int maxSubArray3(int[] nums) {
+        int n = nums.length;
+        int sum = 0;
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            // 累加
+            sum += nums[i];
+            // 更新最大值结果
+            ans = Math.max(ans, sum);
+            // 为负数时，重新计算
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[][] array1 = { { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, { 1 }, { 5, 4, -1, 7, 8 } };
         int[][] array2 = { { 1 } };
         for (int i = 0; i < array1.length; i++) {
-            Object ans = maxSubArray(array1[i]);
+            Object ans = maxSubArray3(array1[i]);
             System.out.println(ans);
         }
     }
